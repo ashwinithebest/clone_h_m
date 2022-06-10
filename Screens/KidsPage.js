@@ -1,10 +1,11 @@
 import React from 'react'
-import { View,Text } from 'react-native-web'
+import { View,Text,Button } from 'react-native-web'
 
-const KidsPage = () => {
+const KidsPage = (props) => {
   return (
-    <View>
-        <Text>this is Kids' Page</Text>
+    <View> 
+      <Button title='open' onPress={()=>{props.navigation.openDrawer()}}></Button> 
+      <Text>this is Kids' Page</Text>
     </View>
   )
 }

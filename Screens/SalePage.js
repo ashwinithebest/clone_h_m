@@ -1,9 +1,10 @@
 import React from 'react'
-import { Text,View } from 'react-native-web'
+import { Text,View,Button } from 'react-native-web'
 
-const SalePage = () => {
+const SalePage = (props) => {
     return (
         <View>
+            <Button title='open' onPress={()=>{props.navigation.openDrawer()}}></Button>
             <Text>Just a Click bait</Text>
         </View>
     )

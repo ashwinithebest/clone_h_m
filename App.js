@@ -7,13 +7,14 @@ import MenPage from './Screens/Men';
 import WomenPage from './Screens/WomenPage';
 import KidsPage from './Screens/KidsPage';
 import SalePage from './Screens/SalePage';
+import MyAccount from './Screens/MyAccount';
  function App(props) {
   return (
     <NavigationContainer>
     {/* <MyDrawer /> */}
     <View >
       <Navbar></Navbar>
-      <Button title='open' onPress={()=>{props.navigation.openDrawer()}}></Button>
+      <Button title='Open' onPress={()=>{props.navigation.openDrawer()}}></Button>
     </View>
   </NavigationContainer>
    
@@ -37,6 +38,10 @@ const appNavigator= createDrawerNavigator({
   },
   Sale:{
     screen:SalePage
+  },
+  MyAccount:{
+    screen : MyAccount
   }
+
 })
 export default createAppContainer(appNavigator)

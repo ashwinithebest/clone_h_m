@@ -36,7 +36,7 @@ const style= StyleSheet.create({
         justifyContent: ' flex-end ' ,
         gap:'10px',
         flexDirection:'row',
-        backgroundColor: 'cyan',
+        backgroundColor: 'pink',
         width: '100%',
         height:'50px',
     },

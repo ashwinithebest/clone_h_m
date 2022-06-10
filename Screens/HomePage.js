@@ -1,9 +1,13 @@
 import React from 'react'
-import { View } from 'react-native-web'
+import { Image, TouchableOpacity, View } from 'react-native-web'
 
 const HomePage = () => {
   return (
-    <View><Text>HomePage</Text></View>
+    <TouchableOpacity>
+      <Image></Image>
+       <View><Text>HomePage</Text></View>
+    </TouchableOpacity>
+   
   )
 }
 
