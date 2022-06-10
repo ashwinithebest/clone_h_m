@@ -27,23 +27,7 @@ const Navbar = (props) => {
   )
 }
 
-const appNavigator= createDrawerNavigator({
-  Home:{
-    screen:HomePage
-  },
-  Men:{
-    screen:MenPage
-  },
-  Women:{
-    screen:WomenPage
-  },
-  Kids:{
-    screen:KidsPage
-  },
-  Sale:{
-    screen:SalePage
-  }
-})
+
 export default Navbar
 
 const style= StyleSheet.create({
