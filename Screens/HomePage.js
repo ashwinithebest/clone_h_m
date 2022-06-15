@@ -1,5 +1,5 @@
-import React, { useState ,useEffect} from 'react'
-import { Image, TouchableOpacity, Text, View, Button, TextInput,FlatList } from 'react-native-web'
+import React, { useState, useEffect } from 'react'
+import { Image, TouchableOpacity, Text, View, Button, TextInput, FlatList } from 'react-native-web'
 import { StyleSheet } from 'react-native-web'
 import Data from '../Data/SearchData'
 
@@ -9,13 +9,13 @@ import Data from '../Data/SearchData'
 const HomePage = ({ navigation }) => {
   const [SearchWord, setSearchWord] = useState('')
   const [foundProduct, setfoundProduct] = useState([])
- 
-  console.log('Products are',foundProduct)
+
+  console.log('Products are', foundProduct)
 
   // useEffect(() => {
   //  setSearchWord()
   // }, [SearchWord])
-  
+
   const filter = (keyword) => {
     setSearchWord(keyword)
     console.log('searchword is', SearchWord)
@@ -36,7 +36,7 @@ const HomePage = ({ navigation }) => {
       <Text style={styles.title}>{title}</Text>
     </View>
   );
- 
+
 
   const renderItem = ({ item }) => (
     <Item title={item.name} />
@@ -46,24 +46,22 @@ const HomePage = ({ navigation }) => {
   return (
 
     <View style={styles.container}>
-      <TextInput 
-      style={styles.inputContainer}
-      placeholder="search a product"
-      onChangeText={filter}
-      defaultvalue={SearchWord}
-      onBlur={()=>{setfoundProduct([])
-        console.log('onblur triggered')}}
-      ></TextInput>
-       
-         
-      
-       {foundProduct && foundProduct.length > 0 ?        
-           <FlatList style={styles.searchList}
-           data={foundProduct}
-           renderItem={renderItem}
-           keyExtractor={item => item.id}
-           
-         /> : (<Text>empty list </Text>)}
+      <TextInput
+        style={styles.inputContainer}
+        placeholder="search a product"
+        onChangeText={filter}
+        defaultvalue={SearchWord}
+        onBlur={() => {
+          setfoundProduct([])
+          console.log('onblur triggered')
+        }}>
+      </TextInput>
+      {foundProduct && foundProduct.length > 0 ?
+        <FlatList style={styles.searchList}
+          data={foundProduct}
+          renderItem={renderItem}
+          keyExtractor={item => item.id} /> :
+        (<Text>empty list </Text>)}
 
       <View style={styles.flexContainer}>
         <TouchableOpacity style={styles.hmButton}
@@ -115,12 +113,14 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     // backgroundColor: 'red',
-    height:'50px',
-    fontSize:'20px',
+    height: '50px',
+    width:'1000px',
+    fontSize: '20px',
   },
-  searchList:{
-    position:'absolute',
+  searchList: {
+    width: '3px',
+    position: 'absolute',
     backgroundColor: 'powderblue',
-    fontSize:'15px'    
+    fontSize: '15px'
   }
 })
