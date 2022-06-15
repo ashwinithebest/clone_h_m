@@ -18,7 +18,7 @@ const Navbar = (props) => {
     const clg=()=>{console.log('Onpress is working')}
   return (
     <View style={style.hmnavbar}>
-       <Button title='open' onPress={()=>{props.navigation.openDrawer()}}></Button>
+       {/* <Button title='open' onPress={()=>{props.navigation.openDrawer()}}></Button> */}
         <AntDesign onPress={clg} name="hearto" size={24} color="black" />
         <SimpleLineIcons name="user" size={24} color="black" />
         <Ionicons name="ios-search-outline" size={24} color="black" />
@@ -32,12 +32,12 @@ export default Navbar
 
 const style= StyleSheet.create({
     hmnavbar:{
-        flex:1,
+        // flex:1,
         justifyContent: ' flex-end ' ,
         gap:'10px',
         flexDirection:'row',
-        backgroundColor: 'pink',
+        // backgroundColor: 'pink',
         width: '100%',
-        height:'50px',
+        height:'autofit',
     },
 });
