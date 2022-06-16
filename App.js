@@ -19,11 +19,9 @@ const Stack = createNativeStackNavigator();
 // const Drawer = createDrawerNavigator();
 
 function App() {
-  const [isSearchBtnClicked, setIsSearchBtnClicked] = useState(false)
+  const [isSearchBtnClicked, setIsSearchBtnClicked] = useState(true)
   const [SearchWord, setSearchWord] = useState('')
   const [foundProduct, setfoundProduct] = useState([])
-  console.log('searchword is', SearchWord)
-  console.log('Products are', foundProduct)
 
   useEffect(() => {
     if (SearchWord !== '') {
@@ -38,9 +36,6 @@ function App() {
 
   const filter = (keyword) => {
     setSearchWord(keyword)
-    console.log('some dot')
-    console.log('keyword is', keyword)
-    
   }
   const Item = ({ title }) => (
     <View >
@@ -59,7 +54,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home"
         screenOptions={{
           headerRight: () => (
-            <View>
+          
               <View style={styles.hmHeader}>
                 {isSearchBtnClicked && (
                   <View >
@@ -69,11 +64,11 @@ function App() {
                       onChangeText={filter}
                       defaultvalue={SearchWord}
                       autoFocus={true}
-                      onBlur={() => {
-                        setfoundProduct([])
-                        console.log('onblur triggered')
-                        setIsSearchBtnClicked(!isSearchBtnClicked)
-                      }}
+                     onBlur={() => {
+                       setfoundProduct([])
+                       console.log('onblur triggered')
+                       setIsSearchBtnClicked(!isSearchBtnClicked)
+                     }}
                     />
                     {foundProduct && foundProduct.length > 0 ?
                     
@@ -84,14 +79,7 @@ function App() {
 
                       /> : <Text> </Text>
                       }
-                    <TouchableOpacity
-                      onPress={() => {
-                        setIsSearchBtnClicked(!isSearchBtnClicked);
-                        console.log("Button clicked");
-                      }}
-                    >
-                      {/* <Image source={tabs[2].image} style={styles.MenuIcon} /> */}
-                    </TouchableOpacity>
+                    
                   </View>
                 )}
 
@@ -101,7 +89,7 @@ function App() {
                 <SimpleLineIcons name="user" size={24} color="black" />
                 <SimpleLineIcons name="bag" size={24} color="black" />
               </View>
-            </View>
+            
 
           ),
           // headerBackImageSource:"./assets/favicon.png"
@@ -131,13 +119,15 @@ const styles = StyleSheet.create({
     gap: '10px',
     position:'absolute',
     color: '#fff',
+    // backgroundColor:'blue',
     flexDirection: 'row',
     width: '100%',
     height: '30%',
+    bottom:27
   },
   inputContainer: {
     backgroundColor: '#f2f3f4',
-    height: '28px',
+    height: '30px',
     width:'100%',
     // border:'1px',
     fontSize: '20px',
@@ -145,14 +135,13 @@ const styles = StyleSheet.create({
   },
   searchList: {
     position: 'absolute',
-    backgroundColor: '#fff',
+    backgroundColor: '#f1f2f3',
     width: '100%',
     marginTop:'30px',
     shadowColor: '#000000',
     shadowRadius: 3,
     shadowOffset: { height: 4, width: 0 },
     shadowOpacity: 0.5,
-    fontSize:'35px',
     zIndex:1
   },
   title:{
