@@ -22,27 +22,25 @@ function App() {
   const [isSearchBtnClicked, setIsSearchBtnClicked] = useState(false)
   const [SearchWord, setSearchWord] = useState('')
   const [foundProduct, setfoundProduct] = useState([])
-
+  console.log('searchword is', SearchWord)
   console.log('Products are', foundProduct)
 
-  // useEffect(() => {
-  //  setSearchWord()
-  // }, [])
-
-  const filter = (keyword) => {
-    setSearchWord(keyword)
-    console.log('searchword is', SearchWord)
-    console.log('keyword is', keyword)
+  useEffect(() => {
     if (SearchWord !== '') {
-
       const results = Data.filter((product) => {
         return product.name.toLowerCase().startsWith(SearchWord.toLowerCase());
-
       });
       setfoundProduct(results);
     } else {
       setfoundProduct([]);
     };
+  }, [SearchWord])
+
+  const filter = (keyword) => {
+    setSearchWord(keyword)
+    console.log('some dot')
+    console.log('keyword is', keyword)
+    
   }
   const Item = ({ title }) => (
     <View >
@@ -156,5 +154,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     fontSize:'35px',
     zIndex:1
+  },
+  title:{
+    fontSize:20
   }
 });

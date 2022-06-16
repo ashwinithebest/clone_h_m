@@ -10,16 +10,19 @@ const HomePage = ({ navigation }) => {
   const [SearchWord, setSearchWord] = useState('')
   const [foundProduct, setfoundProduct] = useState([])
 
+  console.log('searchword is', SearchWord)
+  // console.log('keyword is', keyword)
   console.log('Products are', foundProduct)
 
   // useEffect(() => {
   //  setSearchWord()
-  // }, [SearchWord])
+  // }, [])
 
   const filter = (keyword) => {
+    console.log('some dot')
     setSearchWord(keyword)
-    console.log('searchword is', SearchWord)
-    console.log('keyword is', keyword)
+    // console.log('keyword is', keyword)
+   
     if (SearchWord !== '') {
 
       const results = Data.filter((product) => {
