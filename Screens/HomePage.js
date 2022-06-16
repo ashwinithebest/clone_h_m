@@ -1,70 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Image, TouchableOpacity, Text, View, Button, TextInput, FlatList } from 'react-native-web'
+import React from 'react'
+import { TouchableOpacity, Text, View} from 'react-native-web'
 import { StyleSheet } from 'react-native-web'
-import Data from '../Data/SearchData'
-
-
-
 
 const HomePage = ({ navigation }) => {
-  const [SearchWord, setSearchWord] = useState('')
-  const [foundProduct, setfoundProduct] = useState([])
-
-  console.log('searchword is', SearchWord)
-  // console.log('keyword is', keyword)
-  console.log('Products are', foundProduct)
-
-  // useEffect(() => {
-  //  setSearchWord()
-  // }, [])
-
-  const filter = (keyword) => {
-    console.log('some dot')
-    setSearchWord(keyword)
-    // console.log('keyword is', keyword)
-   
-    if (SearchWord !== '') {
-
-      const results = Data.filter((product) => {
-        return product.name.toLowerCase().startsWith(SearchWord.toLowerCase());
-
-      });
-      setfoundProduct(results);
-    } else {
-      setfoundProduct([]);
-    };
-  }
-  const Item = ({ title }) => (
-    <View >
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-
-
-  const renderItem = ({ item }) => (
-    <Item title={item.name} />
-  );
-
 
   return (
 
     <View style={styles.container}>
-      <TextInput
-        style={styles.inputContainer}
-        placeholder="search a product"
-        onChangeText={filter}
-        defaultvalue={SearchWord}
-        onBlur={() => {
-          setfoundProduct([])
-          console.log('onblur triggered')
-        }}>
-      </TextInput>
-      {foundProduct && foundProduct.length > 0 ?
-        <FlatList style={styles.searchList}
-          data={foundProduct}
-          renderItem={renderItem}
-          keyExtractor={item => item.id} /> :
-        (<Text>empty list </Text>)}
 
       <View style={styles.flexContainer}>
         <TouchableOpacity style={styles.hmButton}
@@ -74,9 +16,9 @@ const HomePage = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.hmButton}
-          onPress={() => navigation.navigate('Search')}
+          onPress={() => navigation.navigate('Sale')}
         >
-          <Text>Search</Text>
+          <Text>Sale</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.hmButton}
@@ -100,30 +42,15 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     textAlign: 'center',
+    fontSize:35,
     backgroundColor: 'pink',
     // height: '23.52%' 
   },
-  flexContainer: {
-    // height: '100px',
-    // marginTop:'-530px',
-    // backgroundColor: 'blue',
-  },
-  hmButton: {
+    hmButton: {
     flex: 1,
     height: 25,
+    fontSize:35,
     // backgroundColor:'blue',
     border: '1px',
   },
-  inputContainer: {
-    // backgroundColor: 'red',
-    height: '50px',
-    width:'1000px',
-    fontSize: '20px',
-  },
-  searchList: {
-    width: '3px',
-    position: 'absolute',
-    backgroundColor: 'powderblue',
-    fontSize: '15px'
-  }
 })

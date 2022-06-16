@@ -17,7 +17,6 @@ const KidsPage = ({navigation}) => {
   return (
     <View> 
        <Text>Count: {count}</Text>
-     
       <Text>this is Kids' Page</Text>
     </View>
   )
