@@ -5,8 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { Cache } from "react-native-cache";
-import { AsyncStorage } from "@react-native-async-storage/async-storage";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Navbar = (props) => {
   const [isSearchBtnClicked, setIsSearchBtnClicked] = useState(false)
   const [SearchWord, setSearchWord] = useState('')
@@ -25,6 +24,8 @@ const Navbar = (props) => {
 
   const filter = (keyword) => {
     setSearchWord(keyword)
+    console.log('onchange trigerred')
+    getData()
   }
   const Item = ({ title }) => (
     <View >
@@ -37,23 +38,42 @@ const Navbar = (props) => {
     <Item title={item.name} />
   );
     //cache code
-    const cache = new Cache({
-      namespace: "myapp",
-      policy: {
-          maxEntries: 5, // if unspecified, it can have unlimited entries
-          stdTTL: 0 // the standard ttl as number in seconds, default: 0 (unlimited)
-      },
-      backend: AsyncStorage
-  });
+ 
+    const keyArray=['key1','key2','key3','key4','key5']
+    const dataArray=['a','b','c','d','e']
 
-  const cachefunc= async()=>{
-  await cache.set("hello", "world");
-// key 'hello' is now set to 'world' in namespace 'myapp'
+    const storeData = async (value) => {
+      try {
+        var x=0
+        await AsyncStorage.setItem(keyArray[x], value)
+        x>=4?x=0:x++;
+        console.log('set the value to',value)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    const getData = async () => {
+      try {
+        var x=0
+        var str='thththe'
+        const value = await AsyncStorage.getItem(keyArray[x])
+        x>=4?x=0:x++
+        console.log('got the value',value)
+        dataArray[1]=str;
+        if(value !== null) {
+          console.log(value)
+          // value previously stored
+        }
+      } catch(e) {
+        console.log(e)
+      }
+    }
+    
+    for(var i=0;i<=4;i++)
+    {
+      console.log('dataArray['+i+']'+ dataArray[i])
+    }
 
-   const value =  await cache.get("key1");
-  console.log(value);
-
-  }
 
   return (
     <View style={styles.hmHeader}>
@@ -69,6 +89,7 @@ const Navbar = (props) => {
               setfoundProduct([])
               console.log('onblur triggered')
               setIsSearchBtnClicked(!isSearchBtnClicked)
+              storeData(SearchWord)
              
             }}
           />
