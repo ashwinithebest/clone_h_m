@@ -4,6 +4,8 @@ import Data from '../Data/SearchData';
 import { AntDesign } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { Cache } from "react-native-cache";
+import { AsyncStorage } from "@react-native-async-storage/async-storage";
 
 const Navbar = (props) => {
   const [isSearchBtnClicked, setIsSearchBtnClicked] = useState(false)
@@ -20,6 +22,7 @@ const Navbar = (props) => {
     };
   }, [SearchWord])
 
+
   const filter = (keyword) => {
     setSearchWord(keyword)
   }
@@ -33,6 +36,25 @@ const Navbar = (props) => {
   const renderItem = ({ item }) => (
     <Item title={item.name} />
   );
+    //cache code
+    const cache = new Cache({
+      namespace: "myapp",
+      policy: {
+          maxEntries: 5, // if unspecified, it can have unlimited entries
+          stdTTL: 0 // the standard ttl as number in seconds, default: 0 (unlimited)
+      },
+      backend: AsyncStorage
+  });
+
+  const cachefunc= async()=>{
+  await cache.set("hello", "world");
+// key 'hello' is now set to 'world' in namespace 'myapp'
+
+   const value =  await cache.get("key1");
+  console.log(value);
+
+  }
+
   return (
     <View style={styles.hmHeader}>
       {isSearchBtnClicked && (
@@ -47,6 +69,7 @@ const Navbar = (props) => {
               setfoundProduct([])
               console.log('onblur triggered')
               setIsSearchBtnClicked(!isSearchBtnClicked)
+             
             }}
           />
           {foundProduct && foundProduct.length > 0 &&

@@ -1,14 +1,14 @@
 import React from 'react'
 import { TouchableOpacity, Text, View} from 'react-native-web'
 import { StyleSheet } from 'react-native-web'
+import ProductCard from '../Components/ProductCard'
 
 const HomePage = ({ navigation }) => {
 
   return (
-
+<View>
     <View style={styles.container}>
-
-      <View style={styles.flexContainer}>
+      
         <TouchableOpacity style={styles.hmButton}
           onPress={() => navigation.navigate('Men')}
         >
@@ -33,6 +33,13 @@ const HomePage = ({ navigation }) => {
           <Text>Kids</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.cardContainer}>
+<ProductCard price='250'></ProductCard>
+<ProductCard ></ProductCard>
+<ProductCard></ProductCard>
+<ProductCard price='250'></ProductCard>
+</View>
+      
     </View>)
 }
 
@@ -53,4 +60,9 @@ const styles = StyleSheet.create({
     // backgroundColor:'blue',
     border: '1px',
   },
+  cardContainer:{
+    flex: '1 0 50%',
+    flexwrap:'wrap',
+    flexDirection:'row'
+  }
 })
